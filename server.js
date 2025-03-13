@@ -16,7 +16,7 @@ const bot = new TelegramBot(token, { webHook: true });
 const app = express();
 app.use(express.json());
 
-// Lấy URL của Vercel (thay bằng URL thật sau khi deploy)
+// Lấy URL của Vercel (thay YOUR-VERCEL-URL bằng URL thực tế của bạn)
 const WEBHOOK_URL = "https://project-tnt.vercel.app";
 bot.setWebHook(`${WEBHOOK_URL}/bot${token}`);
 
@@ -37,25 +37,32 @@ app.get('/uptime', (req, res) => {
 });
 
 // **Tự động import tất cả module trong thư mục "mdl/"**
-try {
-    const mdlPath = path.join(__dirname, 'mdl');
-    if (fs.existsSync(mdlPath)) {
+const importModules = (dir) => {
+    try {
+        const mdlPath = path.join(__dirname, dir);
+        if (!fs.existsSync(mdlPath)) {
+            console.warn(`Thư mục '${dir}/' không tồn tại, bỏ qua việc import module.`);
+            return;
+        }
+
         fs.readdirSync(mdlPath).forEach((file) => {
             if (file.endsWith('.js')) {
                 try {
-                    require(`./mdl/${file}`)(bot, { adminId, groupId });
-                    console.log(`Đã load module: ${file}`);
+                    const modulePath = `./${dir}/${file}`;
+                    require(modulePath)(bot, { adminId, groupId });
+                    console.log(`✅ Đã load module: ${file}`);
                 } catch (err) {
-                    console.error(`Lỗi khi load module ${file}:`, err);
+                    console.error(`❌ Lỗi khi load module ${file}:`, err);
                 }
             }
         });
-    } else {
-        console.warn("Thư mục 'mdl/' không tồn tại, bỏ qua việc import module.");
+    } catch (err) {
+        console.error(`❌ Lỗi khi load thư mục '${dir}/':`, err);
     }
-} catch (err) {
-    console.error("Lỗi khi load thư mục 'mdl/':", err);
-}
+};
+
+// Gọi hàm import cho thư mục `mdl/`
+importModules('mdl');
 
 // Lắng nghe lệnh từ Telegram
 bot.onText(/\/start/, (msg) => {
@@ -69,12 +76,6 @@ bot.onText(/\/uptime/, (msg) => {
 // Gửi thông báo khi bot khởi động
 sendAutoDeleteMessage(bot, adminId, 'Bot đã khởi động và sẵn sàng hoạt động!');
 setupAutoNoti(bot, groupId);
-
-// **Chạy server trên cổng 3000 khi chạy local**
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server đang chạy tại http://localhost:${PORT}`);
-});
 
 // Export app để chạy trên Vercel
 module.exports = app;
