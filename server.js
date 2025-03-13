@@ -16,6 +16,9 @@ const bot = new TelegramBot(token, { webHook: true });
 const app = express();
 app.use(express.json());
 
+// 👉 **Kết nối index.html**
+app.use(express.static('public')); // Đảm bảo thư mục `public/` chứa index.html
+
 // Lấy URL của Vercel (thay YOUR-VERCEL-URL bằng URL thực tế của bạn)
 const WEBHOOK_URL = "https://project-tnt.vercel.app";
 bot.setWebHook(`${WEBHOOK_URL}/bot${token}`);
@@ -26,7 +29,7 @@ app.post(`/bot${token}`, (req, res) => {
     res.sendStatus(200);
 });
 
-// Route uptime
+// Route uptime (Dùng cho cả API và hiển thị trên web)
 app.get('/uptime', (req, res) => {
     sendUptime(bot, adminId);
     const uptimeSeconds = process.uptime();
@@ -76,6 +79,11 @@ bot.onText(/\/uptime/, (msg) => {
 // Gửi thông báo khi bot khởi động
 sendAutoDeleteMessage(bot, adminId, 'Bot đã khởi động và sẵn sàng hoạt động!');
 setupAutoNoti(bot, groupId);
+
+// 👉 **Hiển thị index.html khi truy cập trang chủ**
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Export app để chạy trên Vercel
 module.exports = app;
