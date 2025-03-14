@@ -2,7 +2,7 @@
 
 ![GitHub stars](https://img.shields.io/github/stars/TNTxTrick/Project-TNT?style=flat)
 ![GitHub forks](https://img.shields.io/github/forks/TNTxTrick/Project-TNT?style=flat)
-![GitHub license](https://img.shields.io/github/license/TNTxTrick/Project-TNT)
+![GitHub license](https://img.shields.io/github/LICENSE/TNTxTrick/Project-TNT)
 
 Bot Telegram đơn giản giúp bạn **tự động hóa công việc** trên Telegram.
 
