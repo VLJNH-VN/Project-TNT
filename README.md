@@ -1,3 +1,33 @@
+# 🤖 Telegram Bot Starter  
+
+![GitHub stars](https://img.shields.io/github/stars/TNTxTrick/Project-TNT?style=flat)
+![GitHub forks](https://img.shields.io/github/forks/TNTxTrick/Project-TNT?style=flat)
+![GitHub license](https://img.shields.io/github/license/TNTxTrick/Project-TNT)
+
+Bot Telegram đơn giản giúp bạn **tự động hóa công việc** trên Telegram.
+
+---
+
+## 📌 Tính Năng
+
+✅ Gửi tin nhắn tự động  
+✅ Hỗ trợ lệnh `/start`, `/help`, ...  
+✅ Kết nối với API bên ngoài  
+
+---
+
+## 📥 Cài Đặt  
+
+### 1.Lấy Token Bot Telegram  
+- Vào Telegram, tìm **BotFather**  
+- Gửi lệnh `/newbot` và làm theo hướng dẫn  
+- Sao chép **token** bot và lưu lại  
+
+### 2.Clone Repo  
+```bash
+git clone https://github.com/TNTxTrick/Project-TNT.git
+cd Project-TNT
+```
 <div align="center">
 
 </div>
