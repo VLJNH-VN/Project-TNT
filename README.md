@@ -27,4 +27,4 @@ Hehe~ another cutie has been caught.
 [![](https://img.shields.io/github/followers/TNTxTrick?label=Followers&style=social)](https://github.com/TNTxTrick)
 [![](https://img.shields.io/badge/Discord-7289DA?logo=discord&logoColor=white)](https://discord.gg/)
 [![](https://img.shields.io/badge/Mail-D14836?logo=gmail&logoColor=white)](mailto:tntxtrick@gmail.com)
-<!-- [![](https://img.shields.io/badge/Telegram-2ca5e0?logo=telegram&logoColor=white)](https://t.me/miyagawamizu) -->
+[![](https://img.shields.io/badge/Telegram-2ca5e0?logo=telegram&logoColor=white)](https://t.me/tntxtrick)
